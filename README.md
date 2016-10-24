@@ -6,7 +6,7 @@ If you're stuck on something, move on with the rest and come back to it after ha
 
 ## Exercise
 
-![](screenshot.png)
+![example](https://dl.dropboxusercontent.com/u/5602052/Screenshot.png)
 
 You have to create a new AngularJS 2.0 app. This app has to be the classical ToDo app. Here go the requirements:
 
