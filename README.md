@@ -1,21 +1,48 @@
-# Weekly assesment 5 (1 hour)
+# Weekly Assessment 5 (4 hours)
 
-Start with the exercise described in this file. To complete it you can search docs online, but not entire solutions. Of course, you can use Angular-cli. Then answer the questions that you find in "questions.md", without using any external sources.
+## Codemocracy
 
-If you're stuck on something, move on with the rest and come back to it after having completed the other parts.
+In this exercise you have to demonstrate your proficiency as a full-stack developer. You should create a complete system that allow a user to list and post new topics, and to let the others vote them up and down.
 
-## Exercise
+Please, read all this document before beginning with the assessment.
 
-![example](https://dl.dropboxusercontent.com/u/5602052/Screenshot.png)
+**Note: To complete it you can search docs online, but not entire solutions.**
 
-You have to create a new AngularJS 2.0 app. This app has to be the classical ToDo app. Here go the requirements:
+## Back-End
 
-- You must use [Bootsrap](https://valor-software.com/ng2-bootstrap/#/)
-- The should be able to:
-  - Create a new task
-  - Complete a task (so its text should look stroked, with a line-through)
+Please, create a backend in ExpressJS that implements the following [documentation](http://docs.codemocracy.apiary.io/). Place it in a folder called `server`.
 
-## Extra credits
+We encourage you to use MongoDB + mongoose for the data layer, but you can use your preferred database and ORM.
 
-- Add two buttons or a dropdown that lets you switch between 'Uncompleted' and 'Completed' tasks views.
-- The task list should be persited on the browser (so when you close the page and open it again it remember all tasks and their state).
+## Front-End
+
+Create a SPA with Angular2 in the `client` folder. Use Angular CLI for creating the app and every component, service, pipe or anything alse that you need.
+
+Keep in mind that the API documentation given in the Back-End section, also provides a mock api url, so you can use it to create the front-end before you start working with the server if you want.
+
+Here you have an exemple on how the app should look:
+
+![screenshot](example.png)
+
+### Requirements:
+
+- When the user enters the page, this should list all the topics.
+  - This list should be sorted by score, descendent.
+  - Show the created date formatted.
+  - If no topic is listed, the page should show a message like 'No topics yet'
+- When the user clicks 'Add Topic' it should create the new topic.
+  - If the content of the text field is empty an error should be shown.
+  - Once the topic is added to the server, it should be shown automatically at the bottom of the list.
+- When the user clicks on the trash icon at the right of the topic, it should be deleted.
+- When the user clicks the up/down arrow, the score of the topic should be updated.
+  - At the end of this action the list of topics should be sorted with the new scores.
+
+## Extra time? Extra credits
+
+- Add a loader (spinner, etc…) for every api request.
+- Make it responsive.
+- Write tests for the back-end part
+
+
+
+Ignition! 🚀
