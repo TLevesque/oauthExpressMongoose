@@ -2,8 +2,14 @@
 
 const mongoose = require('mongoose');
 
+const mongodbUri = 'mongodb://tlevesque:123456@ds157819.mlab.com:57819/fbbotdb';
+
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://tlevesque:123456@ds157819.mlab.com:57819/fbbotdb');
+
+const options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } },
+                replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };
+
+mongoose.connect(mongodbUri, options);
 
 const collectionName = 'anotherCollection';
 const topicSchema = require ('./topicsSchema');
@@ -14,6 +20,4 @@ db.once('open', function () {
   console.log('Moogose connexion working!');
 });
 
-const Topic = mongoose.model('Topic', topicSchema, collectionName);
-
-module.exports = Topic;
+module.exports = mongoose.model('Topic', topicSchema, collectionName);

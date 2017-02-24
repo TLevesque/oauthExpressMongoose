@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const saleCycle = ['welcoming', 'asking', 'choosing', 'choiceDone', 'paying', 'paid', 'planned', 'serviceDone','sactisfaction','closed']
 
 const topicSchema = new mongoose.Schema({
-  // _someId: Schema.Types.ObjectId,  DON'T know how "Schema.Types."works
+  // _someId: Schema.Types.ObjectId,  //DON'T know how "Schema.Types."works
   topic: { type: String, lowercase: true, maxlength: 255, trim: true, required: true },
   votes: { type: Number,  min: 0, max: 10, required: true },
   accepted: { type: Boolean, default: false },
