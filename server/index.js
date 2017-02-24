@@ -5,7 +5,7 @@ const path = require('path');
 var cors = require('cors');
 const bodyParser = require('body-parser');
 
-const routes = require('./routes');
+const router = require('./router');
 
 const hostname = '127.0.0.1';
 const port = 3000;
@@ -15,13 +15,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/', routes);
-
-// 404
-// app.get('/*', function(req, res) {
-//  res.sendStatus(404);
-// });
-
+app.use(router);
 
 app.listen(port, function () {
   console.log(`Topics Server running on ${hostname} in port ${port}...`);
