@@ -11,13 +11,19 @@ const options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS
 
 mongoose.connect(mongodbUri, options);
 
-const collectionName = 'messagesCollection';
-const messageSchema = require ('./messagesSchema');
-
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Mongoose connection error:'));
 db.once('open', function () {
   console.log('Moogose connexion working!');
 });
 
-module.exports = mongoose.model('Message', messageSchema, collectionName);
+const messageSchema = require ('./messagesSchema');
+// module.exports = mongoose.model('Message', messageSchema, 'messagesCollection');
+const Message = mongoose.model('Message', messageSchema, 'messagesCollection');
+
+const userSchema = require ('./usersSchema');
+// module.exports = mongoose.model('User', userSchema, 'usersCollection');
+const User = mongoose.model('User', userSchema, 'usersCollection');
+
+module.exports = { Message, User };
+// exports { Message, User }; ????

@@ -1,17 +1,23 @@
 const express = require('express');
 const router = express.Router();
 
-const messageController = require('./controllers');
+const Controller = require('./controllers/controllers');
+const messageController = Controller.message;
+const userController = Controller.user;
 
-// Error handling NEED TO BE DONE TO NOT BLOCK THE APP IN CASE OF BAD REQUEST
-
-const Message = require('./messagesDB');
+// const Message = require('./models/db');
 
 // get all messages :
 router.get('/messages', messageController.getAll);
 
+// get all users :
+router.get('/users', userController.getAll);
+
 // create new message
 router.post('/message', messageController.createMessage);
+
+// create new user
+router.post('/user', userController.createUser);
 
 // find message by id
 router.get('/message/:id', messageController.findMessage);

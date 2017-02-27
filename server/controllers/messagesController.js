@@ -1,12 +1,15 @@
-const Message = require('./messagesDB');
+const Message = require('../models/db');
+const MessageDB = Message.Message;
 
 const messageController={};
 
 // get all messages :
 messageController.getAll = ( (req, res, next) => {
-  Message.find({}, function(err, docs) {
+  // console.log(req.headers);
+  console.log(Message);
+  MessageDB.find({}, function(err, docs) {
    if(err) {
-     console.error(err)
+     console.error(err);
      return next(err);
    }
    res.json(docs);
@@ -15,10 +18,10 @@ messageController.getAll = ( (req, res, next) => {
 
 // create new message
 messageController.createMessage = ( (req, res, next) => {
-  var obj = new Message(req.body);
+  var obj = new MessageDB(req.body);
   obj.save(function(err, obj) {
     if(err) {
-      console.error(err)
+      console.error(err);
       return next(err);
     }
     res.status(200).json(obj);
@@ -27,9 +30,9 @@ messageController.createMessage = ( (req, res, next) => {
 
 // find message by id
 messageController.findMessage = ( (req, res, next) => {
-  Message.findOne({_id: req.params.id}, function(err, obj) {
+  MessageDB.findOne({_id: req.params.id}, function(err, obj) {
     if(err) {
-      console.error(err)
+      console.error(err);
       return next(err);
     }
     res.json(obj);
@@ -38,9 +41,9 @@ messageController.findMessage = ( (req, res, next) => {
 
 // update message by id
 messageController.updateMessage = ( (req, res, next) => {
-  Message.findOneAndUpdate({_id: req.params.id}, req.body, function(err) {
+  MessageDB.findOneAndUpdate({_id: req.params.id}, req.body, function(err) {
     if(err) {
-      console.error(err)
+      console.error(err);
       return next(err);
     }
     res.sendStatus(200);
@@ -49,9 +52,9 @@ messageController.updateMessage = ( (req, res, next) => {
 
 // delete message by id
 messageController.deleteMessage = ( (req, res, next) => {
-  Message.findOneAndRemove({_id: req.params.id}, function(err) {
+  MessageDB.findOneAndRemove({_id: req.params.id}, function(err) {
     if(err) {
-      console.error(err)
+      console.error(err);
       return next(err);
     }
     res.sendStatus(200);
