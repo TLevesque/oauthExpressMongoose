@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 
-const mongodbUri = 'mongodb://tlevesque:123456@ds157819.mlab.com:57819/fbbotdb';
+const mongodbUri = 'mongodb://tlevesque:123456@ds157829.mlab.com:57829/chatapp';
 
 mongoose.Promise = global.Promise;
 
@@ -11,8 +11,8 @@ const options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS
 
 mongoose.connect(mongodbUri, options);
 
-const collectionName = 'anotherCollection';
-const topicSchema = require ('./topicsSchema');
+const collectionName = 'messagesCollection';
+const messageSchema = require ('./messagesSchema');
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Mongoose connection error:'));
@@ -20,4 +20,4 @@ db.once('open', function () {
   console.log('Moogose connexion working!');
 });
 
-module.exports = mongoose.model('Topic', topicSchema, collectionName);
+module.exports = mongoose.model('Message', messageSchema, collectionName);

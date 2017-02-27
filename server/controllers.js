@@ -1,10 +1,10 @@
-const Topic = require('./topicsDB');
+const Message = require('./messagesDB');
 
-const topicController={};
+const messageController={};
 
-// get all topics :
-topicController.getAll = ( (req, res, next) => {
-  Topic.find({}, function(err, docs) {
+// get all messages :
+messageController.getAll = ( (req, res, next) => {
+  Message.find({}, function(err, docs) {
    if(err) {
      console.error(err)
      return next(err);
@@ -13,9 +13,9 @@ topicController.getAll = ( (req, res, next) => {
   });
 });
 
-// create new topic
-topicController.createTopic = ( (req, res, next) => {
-  var obj = new Topic(req.body);
+// create new message
+messageController.createMessage = ( (req, res, next) => {
+  var obj = new Message(req.body);
   obj.save(function(err, obj) {
     if(err) {
       console.error(err)
@@ -25,9 +25,9 @@ topicController.createTopic = ( (req, res, next) => {
   });
 });
 
-// find topic by id
-topicController.findTopic = ( (req, res, next) => {
-  Topic.findOne({_id: req.params.id}, function(err, obj) {
+// find message by id
+messageController.findMessage = ( (req, res, next) => {
+  Message.findOne({_id: req.params.id}, function(err, obj) {
     if(err) {
       console.error(err)
       return next(err);
@@ -36,9 +36,9 @@ topicController.findTopic = ( (req, res, next) => {
   })
 });
 
-// update topic by id
-topicController.updateTopic = ( (req, res, next) => {
-  Topic.findOneAndUpdate({_id: req.params.id}, req.body, function(err) {
+// update message by id
+messageController.updateMessage = ( (req, res, next) => {
+  Message.findOneAndUpdate({_id: req.params.id}, req.body, function(err) {
     if(err) {
       console.error(err)
       return next(err);
@@ -47,9 +47,9 @@ topicController.updateTopic = ( (req, res, next) => {
   })
 });
 
-// delete topic by id
-topicController.deleteTopic = ( (req, res, next) => {
-  Topic.findOneAndRemove({_id: req.params.id}, function(err) {
+// delete message by id
+messageController.deleteMessage = ( (req, res, next) => {
+  Message.findOneAndRemove({_id: req.params.id}, function(err) {
     if(err) {
       console.error(err)
       return next(err);
@@ -58,4 +58,4 @@ topicController.deleteTopic = ( (req, res, next) => {
   });
 });
 
-module.exports = topicController;
+module.exports = messageController;
