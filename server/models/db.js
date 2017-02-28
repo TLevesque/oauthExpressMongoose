@@ -1,6 +1,7 @@
 'use strict'
 
 const mongoose = require('mongoose');
+const passportLocalMongoose = require('passport-local-mongoose');
 
 const mongodbUri = 'mongodb://tlevesque:123456@ds157829.mlab.com:57829/chatapp';
 
@@ -23,6 +24,7 @@ const Message = mongoose.model('Message', messageSchema, 'messagesCollection');
 
 const userSchema = require ('./usersSchema');
 // module.exports = mongoose.model('User', userSchema, 'usersCollection');
+userSchema.plugin(passportLocalMongoose);
 const User = mongoose.model('User', userSchema, 'usersCollection');
 
 module.exports = { Message, User };

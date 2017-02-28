@@ -1,6 +1,7 @@
 const User = require('../models/db');
 const UserDB = User.User;
 
+
 const userController={};
 
 // get all users :
@@ -28,8 +29,22 @@ userController.createUser = ( (req, res, next) => {
 });
 
 // find user by id
-userController.findUser = ( (req, res, next) => {
+userController.findUserByID = ( (req, res, next) => {
+  console.log('find user by id');
   UserDB.findOne({_id: req.params.id}, function(err, obj) {
+    if(err) {
+      console.error(err);
+      return next(err);
+    }
+    res.json(obj);
+  })
+});
+
+// find user by Username
+userController.findUserByUsername = ( (req, res, next) => {
+  console.log('find user by Username');
+  console.log(req.params.username);
+  UserDB.findOne({username: req.params.username}, function(err, obj) {
     if(err) {
       console.error(err);
       return next(err);
